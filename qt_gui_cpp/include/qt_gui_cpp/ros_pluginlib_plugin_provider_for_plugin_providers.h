@@ -35,6 +35,7 @@
 
 #include "plugin_provider.h"
 #include "ros_pluginlib_plugin_provider.h"
+#include "exportdecl.h"
 
 namespace qt_gui_cpp
 {

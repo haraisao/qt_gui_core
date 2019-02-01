@@ -48,8 +48,14 @@ if(shiboken_helper_FOUND)
     list(APPEND qt_gui_cpp_BINDINGS "shiboken")
     set(qt_gui_cpp_BINDINGS "${qt_gui_cpp_BINDINGS}" PARENT_SCOPE)
 
+    if(WIN32)
+      set(qt_gui_cpp_shiboken_INCLUDE_PATH "${qt_gui_cpp_INCLUDE_PATH}$<SEMICOLON>${SHIBOKEN_INCLUDE_DIR}$<SEMICOLON>${PYSIDE_INCLUDE_DIR}$<SEMICOLON>C:/local/ros/melodic-win/include$<SEMICOLON>C:/local/boost_1_68_0")
+    else()
+      set(qt_gui_cpp_shiboken_INCLUDE_PATH ${qt_gui_cpp_INCLUDE_PATH})
+    endif()
+
     set(QT_INCLUDE_DIR "${Qt5Widgets_INCLUDE_DIRS}")
-    shiboken_generator(libqt_gui_cpp global.h typesystem.xml ${PROJECT_SOURCE_DIR}/src/qt_gui_cpp_shiboken "${qt_gui_cpp_shiboken_SRCS}" "${qt_gui_cpp_HDRS}" "${qt_gui_cpp_INCLUDE_PATH}" "${CMAKE_CURRENT_BINARY_DIR}")
+    shiboken_generator(libqt_gui_cpp global.h typesystem.xml ${PROJECT_SOURCE_DIR}/src/qt_gui_cpp_shiboken "${qt_gui_cpp_shiboken_SRCS}" "${qt_gui_cpp_HDRS}" "${qt_gui_cpp_shiboken_INCLUDE_PATH}" "${CMAKE_CURRENT_BINARY_DIR}")
 
     include_directories(qt_gui_cpp_shiboken ${qt_gui_cpp_INCLUDE_PATH}/qt_gui_cpp)
     shiboken_include_directories(qt_gui_cpp_shiboken "${qt_gui_cpp_shiboken_QT_COMPONENTS}")

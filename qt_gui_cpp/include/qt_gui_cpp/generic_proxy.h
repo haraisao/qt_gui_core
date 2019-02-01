@@ -34,11 +34,12 @@
 #define qt_gui_cpp__GenericProxy_H
 
 #include <QObject>
+#include "exportdecl.h"
 
 namespace qt_gui_cpp
 {
 
-class GenericProxy
+class QT_GUI_CPP_DECL GenericProxy
 {
 
 public:

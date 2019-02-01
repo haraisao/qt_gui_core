@@ -41,10 +41,12 @@
 #include <QMap>
 #include <QString>
 
+#include "exportdecl.h"
+
 namespace qt_gui_cpp
 {
 
-class PluginProvider
+class QT_GUI_CPP_DECL PluginProvider
 {
 
 public:

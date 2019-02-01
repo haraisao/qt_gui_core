@@ -39,10 +39,12 @@
 #include <QMap>
 #include <QString>
 
+#include "exportdecl.h"
+
 namespace qt_gui_cpp
 {
 
-class RecursivePluginProvider
+class QT_GUI_CPP_DECL RecursivePluginProvider
   : public CompositePluginProvider
 {
 

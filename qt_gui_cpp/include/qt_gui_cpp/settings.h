@@ -34,6 +34,7 @@
 #define qt_gui_cpp__Settings_H
 
 #include "generic_proxy.h"
+#include "exportdecl.h"
 
 #include <QString>
 #include <QStringList>
@@ -42,7 +43,7 @@
 namespace qt_gui_cpp
 {
 
-class Settings
+class QT_GUI_CPP_DECL Settings
 {
 
 public:

@@ -38,6 +38,8 @@
 #include "plugin_descriptor.h"
 #include "plugin_provider.h"
 
+#include "exportdecl.h"
+
 // while this header uses boost shared pointers
 // Shiboken2 isn't able to parse it correctly atm
 //#include <boost/shared_ptr.hpp>
@@ -113,6 +115,7 @@ public:
       QStringList paths = discovery_settings.value(key).toStringList();
       for (QStringList::const_iterator it = paths.begin(); it != paths.end(); it++)
       {
+        std::cerr << "===" << it->toStdString() << std::endl;
         plugin_xml_paths.push_back(it->toStdString());
       }
     }
@@ -297,7 +300,7 @@ private:
     std::string manifest_path = class_loader_->getPluginManifestPath(lookup_name);
     //qDebug("RosPluginlibPluginProvider::parseManifest() manifest_path \"%s\"", manifest_path.c_str());
     TiXmlDocument doc;
-    bool loaded = doc.LoadFile(manifest_path);
+    bool loaded = doc.LoadFile(manifest_path.c_str());
     if (!loaded)
     {
       if (doc.ErrorRow() > 0)

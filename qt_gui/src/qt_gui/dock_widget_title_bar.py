@@ -105,8 +105,10 @@ class DockWidgetTitleBar(QWidget):
             self.close_button.hide()
 
     def __del__(self):
-        self._dock_widget.removeEventFilter(self)
-
+        try:
+            self._dock_widget.removeEventFilter(self)
+        except:
+            pass
     def connect_button(self, button_id, callback):
         button = self._extra_buttons.get(button_id, None)
         if button is None:

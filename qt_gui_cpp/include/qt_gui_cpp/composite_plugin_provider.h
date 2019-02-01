@@ -40,11 +40,12 @@
 #include <QMap>
 #include <QSet>
 #include <QString>
+#include "exportdecl.h"
 
 namespace qt_gui_cpp
 {
 
-class CompositePluginProvider
+class QT_GUI_CPP_DECL CompositePluginProvider
   : public PluginProvider
 {
 

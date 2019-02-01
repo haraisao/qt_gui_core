@@ -37,10 +37,12 @@
 #include <QString>
 #include <QVector>
 
+#include "exportdecl.h"
+
 namespace qt_gui_cpp
 {
 
-class PluginDescriptor
+class QT_GUI_CPP_DECL PluginDescriptor
 {
 
 public:

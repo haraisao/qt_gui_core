@@ -34,6 +34,11 @@
 #define NULL 0
 #endif
 
+#ifdef _WIN32
+#define _MT
+#define _DLL
+#endif
+
 #include "pyside2_global.h"
 
 #include <QtCore/QtCore>

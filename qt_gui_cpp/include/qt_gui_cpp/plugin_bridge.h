@@ -34,7 +34,7 @@
 #define qt_gui_cpp__PluginBridge_H
 
 #include <QObject>
-
+#include "exportdecl.h"
 namespace qt_gui_cpp
 {
 
@@ -42,7 +42,7 @@ class Plugin;
 class PluginContext;
 class PluginProvider;
 
-class PluginBridge
+class QT_GUI_CPP_DECL PluginBridge
   : public QObject
 {
 

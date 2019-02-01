@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
+cmake_policy(SET CMP0020 NEW)
 project(qt_gui_cpp)
 
 find_package(catkin REQUIRED COMPONENTS cmake_modules pluginlib)
@@ -16,7 +17,6 @@ catkin_package(
 catkin_python_setup()
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS})
-
 add_subdirectory(src)
 
 install(DIRECTORY include/qt_gui_cpp/
