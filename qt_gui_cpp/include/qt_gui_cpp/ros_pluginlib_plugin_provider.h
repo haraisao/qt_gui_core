@@ -45,8 +45,15 @@
 //#include <boost/shared_ptr.hpp>
 
 #include <pluginlib/class_loader.hpp>
+#ifdef WIN32
+#include <tinyxml2.h>
+#define TiXmlElement   tinyxml2::XMLElement
+#define TiXmlDocument  tinyxml2::XMLDocument
+#define ErrorRow       ErrorLineNum
+#define ErrorDesc       ErrorStr
+#else
 #include <tinyxml.h>
-
+#endif
 #include <QCoreApplication>
 #include <QEvent>
 #include <QList>
@@ -305,7 +312,11 @@ private:
     {
       if (doc.ErrorRow() > 0)
       {
+#ifdef WIN32
+        qWarning("RosPluginlibPluginProvider::parseManifest() could not load manifest \"%s\" (%s [line %d])", manifest_path.c_str(), doc.ErrorDesc(), doc.ErrorRow());
+#else
         qWarning("RosPluginlibPluginProvider::parseManifest() could not load manifest \"%s\" (%s [line %d, column %d])", manifest_path.c_str(), doc.ErrorDesc(), doc.ErrorRow(), doc.ErrorCol());
+#endif
       }
       else
       {

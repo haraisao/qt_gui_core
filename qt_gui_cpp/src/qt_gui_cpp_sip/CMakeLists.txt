@@ -27,7 +27,11 @@ set(qt_gui_cpp_sip_DEPENDENT_FILES
 )
 
 # maintain context for different named target
-set(qt_gui_cpp_sip_INCLUDE_DIRS ${qt_gui_cpp_INCLUDE_DIRS} "${CMAKE_CURRENT_SOURCE_DIR}/../../include" ${catkin_INCLUDE_DIRS}  ${TinyXML_INCLUDE_DIRS})
+if(WIN32)
+  set(qt_gui_cpp_sip_INCLUDE_DIRS ${qt_gui_cpp_INCLUDE_DIRS} "${CMAKE_CURRENT_SOURCE_DIR}/../../include" ${catkin_INCLUDE_DIRS} ${TinyXML2_INCLUDE_DIRS})
+else()
+  set(qt_gui_cpp_sip_INCLUDE_DIRS ${qt_gui_cpp_INCLUDE_DIRS} "${CMAKE_CURRENT_SOURCE_DIR}/../../include" ${catkin_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS})
+endif()
 set(qt_gui_cpp_sip_LIBRARIES ${qt_gui_cpp_LIBRARIES} ${PROJECT_NAME} )
 set(qt_gui_cpp_sip_LIBRARY_DIRS ${qt_gui_cpp_LIBRARY_DIRS} ${CATKIN_DEVEL_PREFIX}/lib/Release)
 set(qt_gui_cpp_sip_LDFLAGS_OTHER ${qt_gui_cpp_LDFLAGS_OTHER} -Wl,-rpath,\\"${CATKIN_DEVEL_PREFIX}/lib\\")
@@ -64,7 +68,11 @@ foreach(var  ${catkin_LIBRARIES})
   endif()
 endforeach()
 
-list(APPEND qt_gui_cpp_sip_LIBRARIES ${TinyXML_LIBRARIES})
+if(WIN32)
+  list(APPEND qt_gui_cpp_sip_LIBRARIES ${TinyXML2_LIBRARIES})
+else()
+  list(APPEND qt_gui_cpp_sip_LIBRARIES ${TinyXML_LIBRARIES})
+endif()
 
 find_package(python_qt_binding REQUIRED)
 include(${python_qt_binding_EXTRAS_DIR}/sip_helper.cmake)
