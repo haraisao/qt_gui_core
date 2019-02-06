@@ -94,24 +94,24 @@ class EdgeItem(GraphItem):
         end_point = None
         if (coordinates[0].startswith('e,')):
             parts = coordinates.pop(0)[2:].split(',')
-            end_point = QPointF(float(parts[0]), -float(parts[1]))
+            end_point = QPointF(float(parts[0].replace("\\","")), -float(parts[1].replace("\\","")))
         # extract optional start_point
         if (coordinates[0].startswith('s,')):
             parts = coordinates.pop(0).split(',')
 
         # first point
         parts = coordinates.pop(0).split(',')
-        point = QPointF(float(parts[0]), -float(parts[1]))
+        point = QPointF(float(parts[0].replace("\\","")), -float(parts[1].replace("\\","")))
         path = QPainterPath(point)
 
         while len(coordinates) > 2:
             # extract triple of points for a cubic spline
             parts = coordinates.pop(0).split(',')
-            point1 = QPointF(float(parts[0]), -float(parts[1]))
+            point1 = QPointF(float(parts[0].replace("\\","")), -float(parts[1].replace("\\","")))
             parts = coordinates.pop(0).split(',')
-            point2 = QPointF(float(parts[0]), -float(parts[1]))
+            point2 = QPointF(float(parts[0].replace("\\","")), -float(parts[1].replace("\\","")))
             parts = coordinates.pop(0).split(',')
-            point3 = QPointF(float(parts[0]), -float(parts[1]))
+            point3 = QPointF(float(parts[0].replace("\\","")), -float(parts[1].replace("\\","")))
             path.cubicTo(point1, point2, point3)
 
         self._arrow = None
