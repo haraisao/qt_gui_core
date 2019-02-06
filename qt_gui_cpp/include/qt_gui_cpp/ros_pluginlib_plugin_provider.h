@@ -307,8 +307,13 @@ private:
     std::string manifest_path = class_loader_->getPluginManifestPath(lookup_name);
     //qDebug("RosPluginlibPluginProvider::parseManifest() manifest_path \"%s\"", manifest_path.c_str());
     TiXmlDocument doc;
+#ifdef WIN32
+    tinyxml2::XMLError loaded = doc.LoadFile(manifest_path.c_str());
+    if (loaded != tinyxml2::XML_SUCCESS)
+#else
     bool loaded = doc.LoadFile(manifest_path.c_str());
     if (!loaded)
+#endif
     {
       if (doc.ErrorRow() > 0)
       {
