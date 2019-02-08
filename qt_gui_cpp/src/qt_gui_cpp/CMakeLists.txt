@@ -47,7 +47,19 @@ install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 
 if(WIN32)
-install(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  CONFIGURATIONS Release)
+  install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    CONFIGURATIONS Release)
+
+  if (EXISTS "$ENV{QTDIR}/bin/Qt5Widgets.dll"
+     AND EXISTS "$ENV{QTDIR}/bin/Qt5Core.dll" 
+     AND EXISTS "$ENV{QTDIR}/bin/Qt5Gui.dll" )
+     install(FILES "$ENV{QTDIR}/bin/Qt5Widgets.dll" "$ENV{QTDIR}/bin/Qt5Core.dll"  "$ENV{QTDIR}/bin/Qt5Gui.dll"
+        DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
+  endif()
+  if (EXISTS "$ENV{QTDIR}/plugins/platforms/qwindows.dll")
+    install(FILES "$ENV{QTDIR}/plugins/platforms/qwindows.dll"
+      DESTINATION "${CATKIN_GLOBAL_BIN_DESTINATION}/platforms")
+  endif()
+
 endif()
