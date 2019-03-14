@@ -33,7 +33,7 @@ else()
   set(qt_gui_cpp_sip_INCLUDE_DIRS ${qt_gui_cpp_INCLUDE_DIRS} "${CMAKE_CURRENT_SOURCE_DIR}/../../include" ${catkin_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS})
 endif()
 set(qt_gui_cpp_sip_LIBRARIES ${qt_gui_cpp_LIBRARIES} ${PROJECT_NAME} )
-set(qt_gui_cpp_sip_LIBRARY_DIRS ${qt_gui_cpp_LIBRARY_DIRS} ${CATKIN_DEVEL_PREFIX}/lib/Release)
+set(qt_gui_cpp_sip_LIBRARY_DIRS ${qt_gui_cpp_LIBRARY_DIRS} ${CATKIN_DEVEL_PREFIX}/lib/${CMAKE_BUILD_TYPE})
 set(qt_gui_cpp_sip_LDFLAGS_OTHER ${qt_gui_cpp_LDFLAGS_OTHER} -Wl,-rpath,\\"${CATKIN_DEVEL_PREFIX}/lib\\")
 
 set(append_next FALSE)
